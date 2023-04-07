@@ -1,46 +1,42 @@
+
 //Varaible Declaration for uppercase
 var uppercaseAlphabets = [];
 for (var i = 65; i <= 90; i++) {
-  uppercaseAlphabets.push(String.fromCharCode(i));
-  //console.log(uppercaseAlphabets);
+  uppercaseAlphabets.push(String.fromCharCode(i));//method converts Unicode values to characters
 }
 
 //Varaible Declaration for lowercase
 var lowercaseAlphabets = [];
 for (var i = 97; i <= 122; i++) {
   lowercaseAlphabets.push(String.fromCharCode(i));
-  //console.log(lowercaseAlphabets);
+
 }
 
 //Varaible Declaration for specialcahracters
 var specialCharacters = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-var specialCharactersArray = specialCharacters.split("");
-//console.log(specialCharactersArray);
+var specialCharactersArray = specialCharacters.split("");//split into "*","!"
+
+
 
 //varaiable Declaration for numbers
 var numbersArray = [0,1,2,3,4,5,6,7,8,9];
-//for (var i = 0; i <= 9; i++) {
-  //numbersArray.push(i);
-  //console.log(numbersArray);
-//}
 
 
-//variables for generate button and password text
+
+//variables for generate button 
 var generateBtn = document.querySelector("#generate");
-//var passwordText = document.querySelector("#password");
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() 
 { 
- 
+   //variable for password text
    var passwordText = document.querySelector("#password");
-   var password = generatePassword();
-   passwordText.value = password;
-  //generatePassword();
-}
+   var password = generatePassword();//passing value of merge password through function
+   passwordText.value = password;//textarea in html
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+}
 
 //create a function to generate password
 function generatePassword()
@@ -51,6 +47,7 @@ function generatePassword()
    var passwordValue =[];
    //varaiable for available character depend on the user input
    var availableCharacter = [];
+
    //Check null field as "" 
    if(passwordLength == "")
    {
@@ -69,34 +66,34 @@ function generatePassword()
    
    //Check the uppercase letter
    
-   var upperCase = confirm ("Do you like to include Uppercase letter in your password");
-   var lowerCase = confirm ("Do you like to include Lowercase letter in your password");
-   var specialCharacters = confirm ("Do you like to include special characters in your password");
-   var numberInPassword = confirm ("Do you like to include numbers in your password");
-   console.log(upperCase);
-   if(upperCase == true)
+   var hasUpperCase = confirm ("Do you like to include Uppercase letter in your password");
+   var hasLowerCase = confirm ("Do you like to include Lowercase letter in your password");
+   var hasSpecialCharacters = confirm ("Do you like to include special characters in your password");
+   var hasNumberInPassword = confirm ("Do you like to include numbers in your password");
+
+   if(hasUpperCase == true)
    {
      availableCharacter = availableCharacter.concat(uppercaseAlphabets);
     
    }
-   if(lowerCase == true)
+   if(hasLowerCase == true)
    {
     availableCharacter = availableCharacter.concat(lowercaseAlphabets);
-   //console.log(availableCharacter);
+
    }
-   if(specialCharacters == true)
+   if(hasSpecialCharacters == true)
    {
     availableCharacter = availableCharacter.concat(specialCharacters);
     console.log(availableCharacter);
    }
-   if(numberInPassword == true)
+   if(hasNumberInPassword == true)
    {
     availableCharacter = availableCharacter.concat(numbersArray);
-    console.log(availableCharacter);
+
    }
-   else if(!upperCase && !lowerCase && !specialCharacters && !numberInPassword)
+   else if(!hasUpperCase && !hasLowerCase && !hasSpecialCharacters && !hasNumberInPassword)
    {
-    alert("Please select atlest one option , Try Again");
+    alert("Please select atleast one option , Try Again");
    }
    
    for(i=1;i<=passwordLength;i++)
@@ -106,6 +103,6 @@ function generatePassword()
    }
    var mergePassword =passwordArray.join("");
    return mergePassword;
-   //console.log(password.value);
+ 
  }
  
